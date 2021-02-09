@@ -3,7 +3,6 @@ package testSiteDeCompras;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
@@ -26,10 +25,6 @@ public class DSL {
 
     public void selecionaTipoSexo(String tipoSexo){
         navegador.findElement(By.cssSelector(tipoSexo)).click();
-    }
-
-    public boolean selecionaTipoComida(String id_tipoComida){
-        return navegador.findElement(By.cssSelector(id_tipoComida)).isSelected();
     }
 
     public void selecionaTipoEscolaridade(String id_campo, String escolaridade){
@@ -75,7 +70,8 @@ public class DSL {
         navegador.findElement(By.cssSelector(id_campo)).click();
     }
 
-
-
+    public void selecionarComidaFavorita(String id_campo){
+        navegador.findElement(By.id(id_campo)).click();
+    }
 }
 

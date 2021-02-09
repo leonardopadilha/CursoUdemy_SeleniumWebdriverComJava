@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -15,6 +14,7 @@ public class TestCampoTreinamento {
 
     private WebDriver navegador;
     private DSL dsl;
+    private CampoTreinamentoPage page;
     String url = "file:///home/leonardor/Documentos/Cursos/SeleniumWebdriver/campo_treinamento/componentes.html";
 
     @Before
@@ -24,42 +24,28 @@ public class TestCampoTreinamento {
         navegador.manage().window().maximize();
         navegador.get(url);
         dsl = new DSL(navegador);
+        page = new CampoTreinamentoPage(navegador);
     }
 
     @Test
     public void testeTextField() {
 
-        dsl.escreveNome("elementosForm:nome", "Curso Selenium Webdriver");
-        dsl.escreveSobrenome("elementosForm:sobrenome", "Com Java");
-        dsl.selecionaTipoSexo("input[id='elementosForm:sexo:0']");
-        navegador.findElement(By.cssSelector("input[id*='comidaFavorita:0']")).click();
-        navegador.findElement(By.cssSelector("input[id*='comidaFavorita:1']")).click();
-        navegador.findElement(By.cssSelector("input[id*='comidaFavorita:2']")).click();
+        page.setNome("Curso Selenium Webdriver");
+        page.setSobrenome("Com Java");
+        page.setSexoMasculino();
 
-        //Escolaridade
-        dsl.selecionaTipoEscolaridade("elementosForm:escolaridade", "Mestrado");
+        page.setPizza();
 
-        //Esporte
-        dsl.selecionaTipoEsporte("elementosForm:esportes", "Natacao");
-        dsl.selecionaTipoEsporte("elementosForm:esportes", "Futebol");
-        dsl.escreveTextArea("elementosForm:sugestoes", "Esse é um curso de " +
-                                     "Selenium Webdriver com java.");
+        page.setEscolaridade("Mestrado");
 
-        navegador.findElement(By.cssSelector("input[value*='aqui']")).click();
+        page.setEsportes("Natacao");
 
-        //Fechando modal de alerta
-        dsl.aceitarAlertaSimples();
+        page.setSugestoes("Esse é um curso de " +
+                         "Selenium Webdriver com java.");
 
-        //Fechando modal confirm
-        navegador.findElement(By.id("confirm")).click();
-        dsl.botaoNegarModalConfirmar();
-        dsl.aceitarAlertaSimples();
+        page.cadastrar();
 
-        //Alert prompt
-        navegador.findElement(By.id("prompt")).click();
-        dsl.digitaModal("12");
 
-        dsl.clicarBotaoCadastrar("input[id*='cadastrar']");
     }
 
     @Test
@@ -153,22 +139,15 @@ public class TestCampoTreinamento {
         comboEsportes.deselectByVisibleText("O que eh esporte?");
 
         navegador.findElement(By.id("elementosForm:cadastrar")).click();
-
-
-
-
-
-//        navegador.findElement(By.cssSelector("input[id*='comidaFavorita:0']")).click();
-//        navegador.findElement(By.cssSelector("input[id*='comidaFavorita:3']")).click();
+        
     }
 
     @Test
     public void testeAlterarNomeEscrito(){
-        dsl.escreveNome("elementosForm:nome", "Primeiro Teste");
-        dsl.escreveNome("elementosForm:nome", "Segundo Teste");
-
-        dsl.clicarBotaoCadastrar("input[id*='cadastrar']");
-        dsl.aceitarAlertaSimples();
+        page.setNome("Primeiro Teste");
+        page.setNome("Segundo Teste");
+        page.cadastrar();
+        page.aceitarAlertSimples();
     }
 
     @After
@@ -176,14 +155,3 @@ public class TestCampoTreinamento {
         navegador.quit();
     }
 }
-
-
-//alert.dismiss(); --> Não aceitar
-//navegador.findElement(By.xpath("//button[contains(text(), 'ok')]")).click();
-
-//Verificar se o título da página é Campo de Treinamento
-// Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
-
-//Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", navegador.findElement(By.className("span")).getText());
-
-
