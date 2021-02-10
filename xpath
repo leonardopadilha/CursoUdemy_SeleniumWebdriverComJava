@@ -1,0 +1,56 @@
+Exercícios curso - xpath: Testes funcionais com Selenium Webdriver
+
+1. Textfield:Nome
+//input[@type='text' and @name='elementosForm:nome']
+
+outro exemplo:
+//*[@id='elementosForm:nome']
+
+outro exemplo:
+(//input)[6]
+
+
+2. Radio: Sexo Feminino
+//input[@type='radio' and @name='elementosForm:sexo']
+
+outro exemplo
+.//*[@id='elementosForm:sexo:1']
+
+outro exemplo
+.//*[@id='elementosForm:sexo:1' and @value='F']
+
+
+3. Label "Pizza" (sem busca de texto)
+//input[@name='elementosForm:comidaFavorita']/../label[@for='elementosForm:comidaFavorita:2']
+
+outro exemplo:
+.//*[@name='elementosForm:comidaFavorita']/../label[@for='elementosForm:comidaFavorita:2']
+
+outro exemplo:
+.//*[@name='elementosForm:comidaFavorita']/../label[@*='elementosForm:comidaFavorita:2']
+
+outro exemplo:
+//*[@id='elementosForm:comidaFavorita:2']/following-sibling::label
+
+
+4. "Usuário B" da tabela sem header
+//*[@*='tabelaSemJSF']//td[.='Usuario B']
+
+
+5. Botão do elemento cujo nome é "Maria"
+.//*[@id='elementosForm:tableUsuarios']//input[@name='elementosForm:tableUsuarios:2:j_idt440']
+
+outro exemplo:
+.//*[@id='elementosForm:tableUsuarios']//td[.='Maria']/..//input[@type='button']
+
+
+6. Radio do elemento cujo nome e escolaridade seja "Doutorado"
+.//*[@*='elementosForm:tableUsuarios']//td[1][.='Doutorado']/..//td[2][.='Doutorado']/..//td[.='Doutorado']/..//input[@type='radio']
+
+
+
+7. Textfield do segundo elemento com escolaridade "Superior"
+//*[@*='elementosForm:tableUsuarios']//td[1][.='Usuario B']/..//td[2][.='Superior']/..//input[@type='text']
+
+outro exemplo:
+(//*[@*='elementosForm:tableUsuarios']//td[2][.='Superior'])[2]/..//input[@type='text']
