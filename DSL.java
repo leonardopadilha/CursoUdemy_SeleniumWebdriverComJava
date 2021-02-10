@@ -73,5 +73,19 @@ public class DSL {
     public void selecionarComidaFavorita(String id_campo){
         navegador.findElement(By.id(id_campo)).click();
     }
+
+    public void clicarBotaoAbrirPopUp(String id_campo){
+        navegador.findElement(By.id(id_campo)).click();
+    }
+
+    public void alternarPoupSemTitulo(int janela){
+        //Transformando a exibição em array e pegando a segunda posição
+        navegador.switchTo().window((String)navegador.getWindowHandles().toArray()[janela]);
+    }
+
+    public void escrevendoTextAreaPopUpSemTitulo(String sugestoes){
+        navegador.findElement(By.tagName("textarea")).sendKeys(sugestoes);
+    }
 }
+
 

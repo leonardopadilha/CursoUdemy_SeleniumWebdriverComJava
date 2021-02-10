@@ -88,19 +88,13 @@ public class TestCampoTreinamento {
     @Test
     public void testeInteragirPopUpSemTitulo(){
 
-        navegador.findElement(By.id("buttonPopUpHard")).click();
+        page.abrirPopUpSemTitulo();
 
-      //Imprimir o id das páginas (principal  popup)
-      //System.out.println(navegador.getWindowHandle());
-      //System.out.println(navegador.getWindowHandles());
+        page.alternarEntrePopUpSemTitulo(1);
+        page.setEscreverTextAreaPopUpSemTitulo("Estou no textarea do PopUp");
 
-        //Transformando a exibição em array e pegando a segunda posição
-        navegador.switchTo().window((String)navegador.getWindowHandles().toArray()[1]);
-        navegador.findElement(By.tagName("textarea")).sendKeys("Estou no textarea do PopUp");
-
-        //Retornando para página principal
-        navegador.switchTo().window((String)navegador.getWindowHandles().toArray()[0]);
-        navegador.findElement(By.tagName("textarea")).sendKeys("Voltei para página principal");
+        page.alternarEntrePopUpSemTitulo(0);
+        page.setSugestoes("Voltei para página principal");
     }
 
     @Test
@@ -139,7 +133,6 @@ public class TestCampoTreinamento {
         comboEsportes.deselectByVisibleText("O que eh esporte?");
 
         navegador.findElement(By.id("elementosForm:cadastrar")).click();
-        
     }
 
     @Test
@@ -155,3 +148,14 @@ public class TestCampoTreinamento {
         navegador.quit();
     }
 }
+
+
+//alert.dismiss(); --> Não aceitar
+//navegador.findElement(By.xpath("//button[contains(text(), 'ok')]")).click();
+
+//Verificar se o título da página é Campo de Treinamento
+// Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
+
+//Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", navegador.findElement(By.className("span")).getText());
+
+

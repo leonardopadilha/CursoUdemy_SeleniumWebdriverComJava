@@ -47,5 +47,16 @@ public class CampoTreinamentoPage {
         dsl.aceitarAlertaSimples();
     }
 
+    public void abrirPopUpSemTitulo(){
+        dsl.clicarBotaoAbrirPopUp("buttonPopUpHard");
+    }
+
+    public void alternarEntrePopUpSemTitulo(int pagina){
+        dsl.alternarPoupSemTitulo(pagina);
+    }
+
+    public void setEscreverTextAreaPopUpSemTitulo(String sugestoes){
+        dsl.escrevendoTextAreaPopUpSemTitulo("Estou no textarea do PopUp");
+    }
 }
 
